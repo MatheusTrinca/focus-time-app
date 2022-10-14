@@ -4,8 +4,9 @@ import { colors } from '../util/colors';
 import { TextInput } from 'react-native-paper';
 import { RoundedButton } from '../components/RoundedButton';
 import { spacing } from '../util/sizes';
+import { FocusHistory } from '../components/FocusHistory';
 
-export const Focus = ({ addSubject }) => {
+export const Focus = ({ addSubject, history }) => {
   const [subject, setSubject] = useState(null);
 
   return (
@@ -24,6 +25,7 @@ export const Focus = ({ addSubject }) => {
           onPress={() => addSubject(subject)}
         />
       </View>
+      <FocusHistory history={history} />
     </View>
   );
 };

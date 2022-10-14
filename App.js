@@ -7,15 +7,21 @@ import { colors } from './src/util/colors';
 
 export default function App() {
   const [currentSubject, setCurrentSubject] = useState(null);
+  const [history, setHistory] = useState([]);
 
   return (
     <SafeAreaView style={styles.container}>
       {!currentSubject ? (
-        <Focus addSubject={setCurrentSubject} />
+        <Focus addSubject={setCurrentSubject} history={history} />
       ) : (
         <Timer
           focusSubject={currentSubject}
-          onTimerEnd={() => {}}
+          onTimerEnd={() =>
+            setHistory([
+              ...history,
+              { id: Math.random(), title: currentSubject },
+            ])
+          }
           clearSubject={() => setCurrentSubject(null)}
         />
       )}

@@ -16,7 +16,7 @@ const PATTERN = [
   1 * ONE_SECOND_IN_MS,
 ];
 
-export const Timer = ({ focusSubject, clearSubject }) => {
+export const Timer = ({ focusSubject, clearSubject, onTimerEnd }) => {
   useKeepAwake();
   const [isStarted, setIsStarted] = useState(false);
   const [progress, setProgress] = useState(1);
@@ -26,6 +26,7 @@ export const Timer = ({ focusSubject, clearSubject }) => {
     Vibration.vibrate(PATTERN);
     setIsStarted(false);
     setProgress(1);
+    onTimerEnd(focusSubject);
     reset();
   };
 
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingBottom: spacing.xl,
+    paddingHorizontal: spacing.md,
   },
   countdown: {
     flex: 0.5,
